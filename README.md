@@ -2,8 +2,6 @@
 
 This is the frontend app created with Vite (React + TypeScript)
 
-Currently, two official plugins are available:
-
 ## Getting started
 
 1. Clone this repo
