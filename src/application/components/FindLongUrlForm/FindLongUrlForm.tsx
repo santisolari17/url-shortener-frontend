@@ -72,7 +72,10 @@ export const FindLongUrlForm = () => {
                   </a>
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ marginTop: 2 }}>
-                  last Visited: {findShortUrlFormState.shortUrl.lastVisited?.toString()}
+                  last Visited:{' '}
+                  {findShortUrlFormState.shortUrl.lastVisited
+                    ? findShortUrlFormState.shortUrl.lastVisited.toString()
+                    : 'Not yet visited'}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ marginTop: 2 }}>
                   Created: {findShortUrlFormState.shortUrl.createdAt.toString()}

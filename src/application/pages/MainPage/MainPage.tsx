@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { ShortUrlForm } from '../../components/ShortUrlForm/ShortUrlForm';
 import { useStyles } from './MainPage.styles';
 import { useSelector } from 'react-redux';
@@ -16,6 +16,9 @@ export const MainPage = () => {
   return (
     <>
       <Grid container spacing={2} padding={5} justifyContent="center" alignItems="center">
+        <Grid item md={12} sm={12}>
+          <Typography variant="h4">Shorten an Url</Typography>
+        </Grid>
         <Grid item lg={12} sx={classes.row}>
           <ShortUrlForm />
         </Grid>
