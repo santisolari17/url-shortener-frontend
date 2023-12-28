@@ -50,7 +50,6 @@ export const findShortUrlSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(findShortUrlThunk.fulfilled, (state, action) => {
-        console.log('vamoooo', action.payload);
         state.status = 'succeeded';
         state.shortUrl = action.payload;
       })

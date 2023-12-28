@@ -1,24 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ShortUrl } from '../../../domain/entities/ShortUrl.entity';
+import { makeShortUrlThunk } from './thunks/makeShortUrl.thunk';
+import { ApplicationErrorData } from '../../../infrastructure/errors/ApplicationErrorData';
 
 const sliceName = 'shortUrlForm';
 
+type TInitialState = {
+  shortUrl?: ShortUrl;
+  hideForm: boolean;
+  hideResult: boolean;
+  longUrlTextFieldValue: string;
+  shortenedUrlTextFieldValue: string;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error?: ApplicationErrorData;
+  reloadToggle: boolean;
+};
+
 interface RootState {
-  [sliceName]: {
-    shortUrl: ShortUrl;
-    hideForm: boolean;
-    hideResult: boolean;
-    longUrlTextFieldValue: string;
-    shortenedUrlTextFieldValue: string;
-  };
+  [sliceName]: TInitialState;
 }
 
-const initialState = {
-  shortUrl: {} as ShortUrl,
+const initialState: TInitialState = {
+  shortUrl: undefined,
   hideForm: false,
   hideResult: true,
   longUrlTextFieldValue: '',
   shortenedUrlTextFieldValue: '',
+  status: 'idle',
+  error: undefined,
+  reloadToggle: false,
 };
 
 export const shortUrlFormSlice = createSlice({
@@ -43,6 +53,21 @@ export const shortUrlFormSlice = createSlice({
     setShortenedUrlTextFieldValue: (state, action) => {
       state.shortenedUrlTextFieldValue = action.payload;
     },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(makeShortUrlThunk.pending, state => {
+        state.status = 'loading';
+        state.shortUrl = undefined;
+      })
+      .addCase(makeShortUrlThunk.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.shortUrl = action.payload;
+      })
+      .addCase(makeShortUrlThunk.rejected, (state, action) => {
+        state.error = action.payload;
+        state.status = 'failed';
+      });
   },
 });
 

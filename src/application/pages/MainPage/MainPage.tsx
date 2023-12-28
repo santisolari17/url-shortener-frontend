@@ -1,9 +1,17 @@
 import { Grid } from '@mui/material';
 import { ShortUrlForm } from '../../components/ShortUrlForm/ShortUrlForm';
 import { useStyles } from './MainPage.styles';
+import { useSelector } from 'react-redux';
+import { selectShortUrlFormState, shortUrlFormActions } from '../../store/shortUrlForm/shortUrlForm.slice';
+import { ApplicationErrorPage } from '../../components/ApplicationErrorPage/ApplicationErrorPage';
 
 export const MainPage = () => {
   const classes = useStyles();
+  const shortUrlFormState = useSelector(selectShortUrlFormState);
+
+  if (shortUrlFormState.error) {
+    return <ApplicationErrorPage error={shortUrlFormState.error} resetStateAction={shortUrlFormActions.resetState} />;
+  }
 
   return (
     <>
