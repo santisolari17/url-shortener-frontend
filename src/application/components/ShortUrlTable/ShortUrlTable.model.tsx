@@ -3,6 +3,7 @@ import { GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-
 import { AppDateUtils } from '../../../infrastructure/utils/AppDateUtils/AppDateUtils';
 import { ShortUrlLink } from './tableComponents/ShortUrlLink';
 import { CopyUrlButton } from './tableComponents/CopyUrlButton';
+import { ViewDetailBtn } from './tableComponents/ViewDetailBtn';
 
 export const TABLE_COLUMNS: GridColDef[] = [
   {
@@ -13,6 +14,15 @@ export const TABLE_COLUMNS: GridColDef[] = [
     align: 'center',
     headerAlign: 'center',
     renderCell: (params: GridRenderCellParams) => <CopyUrlButton shortUrlId={params.row.id} />,
+  },
+  {
+    field: 'viewDetail',
+    headerName: 'Detail',
+    sortable: true,
+    width: 75,
+    align: 'center',
+    headerAlign: 'center',
+    renderCell: (params: GridRenderCellParams) => <ViewDetailBtn shortUrlId={params.row.id} />,
   },
   { field: 'id', headerName: 'UrlId', width: 110 },
   {

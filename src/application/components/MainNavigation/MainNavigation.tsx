@@ -29,6 +29,11 @@ export const MainNavigation = () => {
                 <Button sx={classes.button}>Url List</Button>
               </NavLink>
             )}
+            {authToken && (
+              <NavLink to="/find-detail" end hidden={uiState.disableAppNavigation}>
+                <Button sx={classes.button}>Find ShortUrl Detail</Button>
+              </NavLink>
+            )}
           </Box>
           {!authToken && (
             <NavLink to="/login">

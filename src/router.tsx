@@ -9,6 +9,7 @@ import { loginAction } from './application/components/LoginForm/LoginForm.action
 import { authTokenLoader } from './application/routing/loaders/authToken.loader';
 import { logoutAction } from './application/routing/actions/logout.action';
 import { protectRouteLoader } from './application/routing/loaders/protectRoute.loader';
+import { ShortUrlDetailPage } from './application/pages/ShortUrlDetailPage/ShortUrlDetailPage';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
       { index: true, element: <MainPage />, loader: protectRouteLoader },
       { path: 'logout', action: logoutAction },
       { path: 'list', element: <ShortUrlListPage />, loader: protectRouteLoader },
+      { path: 'find-detail', element: <ShortUrlDetailPage /> },
       { path: 'login', element: <LoginPage />, action: loginAction },
     ],
   },

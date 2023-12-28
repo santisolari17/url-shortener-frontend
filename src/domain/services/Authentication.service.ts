@@ -8,7 +8,15 @@ export enum ELocalStorageAuthKeys {
   Duration = 'c7d5f559-08ce-4a3f-b26c-259c918cb2d4',
 }
 
-class AuthenticationService {
+export interface IAuthenticationService {
+  login: (user: string, password: string) => Promise<string>;
+  removeSession: () => void;
+  getAuthToken: () => string | null;
+  getRemainingSessionTime: () => number;
+  isSessionExpired: () => boolean;
+}
+
+class AuthenticationService implements IAuthenticationService {
   private readonly _host: string;
   private readonly _sessionDurationMins = 10;
 
