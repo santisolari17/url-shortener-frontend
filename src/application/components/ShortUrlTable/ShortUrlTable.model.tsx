@@ -37,7 +37,7 @@ export const TABLE_COLUMNS: GridColDef[] = [
     headerName: 'Clicks',
     type: 'number',
     sortable: true,
-    width: 15,
+    width: 40,
   },
   {
     field: 'createdAt',
